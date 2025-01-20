@@ -35,7 +35,7 @@ def inference(img_path):
             images.append([base64.b64encode(img_file.read()).decode('utf-8'), file])
 
     timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    file_name = f"ai_{timestamp}.txt"
+    file_name = f"result_{timestamp}.txt"
     file_path = os.path.join(img_path, file_name)
     with open(file_path, 'a', encoding='utf-8') as file:
         for index, (img_base, img_name) in enumerate(images):
