@@ -9,18 +9,26 @@ img_folder = "images"
 # 支持多轮对话
 
 lines = [
-    "Please carefully analyze the following app screenshot and identify any UI components that may be hidden or obscured.",
-    "Hidden components are those that are not fully visible due to being covered by other UI elements, nested in complex layouts,",
-    "or are part of scrollable areas. The components are not necessarily set to INVISIBLE or GONE, but might be obstructed or",
-    "difficult to interact with in their current state.",
+    "Please analyze the following app screenshot and identify any UI components that may be hidden or obscured, even if they are not visible in the current state of the app. Focus on controls that could potentially appear based on specific user actions or conditions, but which are not visible in the screenshot itself.",
     "",
-    "For each identified hidden component, provide the following details:",
-    "1. **Component Type**: (e.g., Button, Spinner, TextView, ImageView, etc.)",
-    "2. **Description**: A description of the component's position, size, and how it might be hidden or obscured (e.g., overlapping elements, scrolling behavior, or dynamic layout).",
-    "3. **Hierarchy Information**: Provide insight into where the component is placed within the layout structure, and whether it's hidden by other elements or embedded within complex view hierarchies.",
-    "4. **Interaction Path**: Suggest how a user might interact with the component or make it visible (e.g., by scrolling, expanding, or zooming).",
-    "Additionally, include the extracted text from the screenshot, processed using OCR, to assist in the analysis:",
+    "Hidden components often have the following characteristics and can be inferred even from a single screenshot:",
+    "1. **Dynamically Loaded**: Controls that are not visible in the current screenshot but could appear after a specific user action such as a click, a swipe, or an animation. These controls are typically hidden when the app first loads.",
+    # "2. **Conditionally Triggered**: Controls that might only become visible under certain conditions, such as after the user logs in, grants permissions, or selects certain options. Although not visible now, these controls can be inferred based on the app's design and the context of the screenshot.",
+    "3. **UI State Changes**: Components that are likely to appear or change based on the app's state or user interactions. These could be triggered when transitioning between activities or when a menu is expanded.",
+    "4. **Deep in the View Hierarchy**: Controls that are deeply nested in complex layouts and are not directly visible in the screenshot. These components might require special testing tools to identify, but they can still be inferred based on their typical locations or usage patterns.",
+    # "5. **Transparency and Color**: Controls with low opacity or background-matching colors that are difficult to spot in the screenshot, but which are still part of the UI and may appear under certain conditions.",
+    "6. **Interaction-Triggered Visibility**: Controls that could become visible or interactable after specific user inputs, such as tapping on a dropdown, pressing a button, or swiping on a screen. These controls might not be visible in the screenshot but are likely present and triggered based on the app's normal behavior.",
+    "",
+    "For each identified hidden component, provide the following details in JSON format:",
+    "{",
+    '"component_type": "Type of the component (e.g., Button, Spinner, TextView, ImageView, etc.)",',
+    '"description": "Description of the component, including position, size, and how it might be hidden or obscured.",',
+    '"hierarchy": "Details about the component’s position within the layout structure, and whether it’s obstructed or embedded within complex view hierarchies.",',
+    '"interaction_path": "Suggested user interactions that might trigger the visibility of this component (e.g., tapping, scrolling, expanding, etc.)"',
+    "}",
 ]
+
+
 
 question_list = []
 
